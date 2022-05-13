@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'package:app_financas/pages/loginPage/login.dart';
+import 'package:app_financas/pages/createCountePage/create_count.dart';
 
 void main() {
   runApp(const App());
@@ -14,8 +15,13 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LoginPage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/criarConta' : ((context) => const CreateCountPage())
+      },
     );
   }
 }
