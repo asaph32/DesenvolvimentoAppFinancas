@@ -19,68 +19,67 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.secondary,
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              children: const [
+              children:  [
                 Text(
                   "Bem \nVindo!",
                   style: TextStyle(
-                    color: Color(0xff12CC02),
+                    color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w200,
                     fontSize: 48,
                     decoration: TextDecoration.none
                   ),
                 ),
-                SizedBox(width: 20),
-                Image(
+                const SizedBox(width: 20),
+                const Image(
                   image: AssetImage('assets/imgs/graficos.png'),
                   width: 200,
                 )
               ],
             ),
             const SizedBox(height: 40),
-            const TextField(
+            TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   )
                 ),
                 fillColor: Colors.red,
                 labelText: 'Seu Email',
-                labelStyle: TextStyle(color: Color(0xff12CC02)),
+                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff12CC02)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               style: TextStyle(
-                color: Color(0xff12CC02),
-                fontSize: 18,
+                color: Theme.of(context).colorScheme.primary,                fontSize: 18,
               ),
             ),
             const SizedBox(height: 20),
-            const TextField(
+            TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   )
                 ),
                 fillColor: Colors.red,
                 labelText: 'Senha',
-                labelStyle: TextStyle(color: Color(0xff12CC02)),
+                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff12CC02)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               style: TextStyle(
-                color: Color(0xff12CC02),
+                color: Theme.of(context).colorScheme.primary,
                 fontSize: 18,
               ),
             ),
@@ -88,13 +87,14 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: funcaoTeste, 
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xff12CC02),
+                primary: Theme.of(context).colorScheme.primary,
                 padding: const EdgeInsets.only(left: 135, right: 135, top: 15, bottom: 15)
               ),
-              child: const Text(
+              child: Text(
                 "Fazer Login",
                 style: TextStyle(
                   fontSize: 18,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               )
             ),
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   child: CheckboxListTile(
                     title: const Text("Lembrar senha"),
-                    activeColor: const Color(0xff12CC02),
+                    activeColor: Theme.of(context).colorScheme.primary,
                     value: _marcado,
                     controlAffinity: ListTileControlAffinity.leading,
                     onChanged: (bool? valor) {},
@@ -122,11 +122,11 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 30),
             
             GestureDetector(
-              child: const Text(
+              child: Text(
                 "Cadastrar-se",
                 style: TextStyle(
                   fontSize: 22,
-                  color: Color(0xff12CC02),
+                  color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),

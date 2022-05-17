@@ -22,6 +22,15 @@ class _AppState extends State<App> {
         '/login': (context) => const LoginPage(),
         '/criarConta' : ((context) => const CreateCountPage())
       },
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xff12CC02),
+          primary: const Color(0xff12CC02),
+          secondary: const Color(0xffffffff),
+          brightness: Brightness.light,
+        )
+      ),
     );
   }
 }

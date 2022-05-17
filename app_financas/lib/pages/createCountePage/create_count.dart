@@ -18,73 +18,70 @@ class _CreateCountPageState extends State<CreateCountPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Criar conta"),
-        backgroundColor: const Color(0xff12CC02),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Container(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.secondary,
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TextField(
+            TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   )
                 ),
-                fillColor: Colors.red,
                 labelText: 'Nome',
-                labelStyle: TextStyle(color: Color(0xff12CC02)),
+                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff12CC02)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               style: TextStyle(
-                color: Color(0xff12CC02),
+                color: Theme.of(context).colorScheme.primary,
                 fontSize: 18,
               ),
             ),
             const SizedBox(height: 30),
-            const TextField(
+            TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   )
                 ),
-                fillColor: Colors.red,
                 labelText: 'Email',
-                labelStyle: TextStyle(color: Color(0xff12CC02)),
+                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff12CC02)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               style: TextStyle(
-                color: Color(0xff12CC02),
+                color: Theme.of(context).colorScheme.primary,
                 fontSize: 18,
               ),
             ),
             const SizedBox(height: 30),
-            const TextField(
+            TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10.0),
                   )
                 ),
-                fillColor: Colors.red,
                 labelText: 'Senha',
-                labelStyle: TextStyle(color: Color(0xff12CC02)),
+                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff12CC02)),
+                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
                 ),
               ),
               style: TextStyle(
-                color: Color(0xff12CC02),
+                color: Theme.of(context).colorScheme.primary,
                 fontSize: 18,
               ),
             ),
@@ -92,7 +89,7 @@ class _CreateCountPageState extends State<CreateCountPage> {
             ElevatedButton(
               onPressed: funcaoTeste, 
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xff12CC02),
+                primary: Theme.of(context).colorScheme.primary,
                 padding: const EdgeInsets.only(left: 135, right: 135, top: 15, bottom: 15)
               ),
               child: const Text(
