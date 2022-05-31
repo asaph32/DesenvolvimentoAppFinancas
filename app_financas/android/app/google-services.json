@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "6003157089",
+    "project_id": "app-financas-477bd",
+    "storage_bucket": "app-financas-477bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6003157089:android:9a145333dddc49be9f2220",
+        "android_client_info": {
+          "package_name": "com.example.app_financas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6003157089-s7enh4sn2lgr9q5uq3h8r3fotsan54se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyBOmmwvEofx8QwwVU6jWlqnmWtL0ySZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6003157089-s7enh4sn2lgr9q5uq3h8r3fotsan54se.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "6003157089-v660pd7e185h0mm6bctfp4b7g7r3kros.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appFinancas"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

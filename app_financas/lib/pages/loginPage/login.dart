@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -9,8 +10,25 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  void funcaoTeste() {
-    debugPrint("clicou");
+  final formKey = GlobalKey<FormState>();
+  final email = TextEditingController();
+  final senha = TextEditingController();
+
+  void fazerLogin() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.text,
+        password: senha.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      } else {
+        print("logou");
+      }
+    }
   }
 
   @override
@@ -21,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           color: Theme.of(context).colorScheme.secondary,
           padding: const EdgeInsets.all(20),
           child: Form(
-            // key: formkey,
+            key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -41,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(width: 20),
                       const Image(
                         image: AssetImage('assets/imgs/graficos.png'),
-                        width: 180,
+                        width: 170,
                       )
                     ],
                   ),
@@ -49,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: TextFormField(
-                    // controller: email,
+                    controller: email,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -60,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: TextFormField(
-                    // controller: senha,
+                    controller: senha,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
@@ -75,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.only(left: 147, right: 147, top: 15, bottom: 15)
                     ),
-                    onPressed: funcaoTeste,
+                    onPressed: fazerLogin,
                     child: const Text(
                       "Login"
                     ),
@@ -92,12 +110,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10),
-                  child: Text(
-                    "Cadastrar-se",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.primary,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/criarConta');
+                    },
+                    child: Text(
+                      "Cadastrar-se",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   )
                 ),

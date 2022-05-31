@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:app_financas/pages/loginPage/login.dart';
 import 'package:app_financas/pages/createCountePage/create_count.dart';
+import 'package:app_financas/pages/bottomNavigator/bottom_navigator.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'services/firebase_auth.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const App());
 }
 class App extends StatefulWidget {
@@ -17,10 +25,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/AuthGate',
       routes: {
         '/login': (context) => const LoginPage(),
-        '/criarConta' : ((context) => const CreateCountPage())
+        '/criarConta' : (context) => const CreateCountPage(),
+        '/bottom_navigator' : (context) => const BottomNavigator(),
+        '/AuthGate' : (context) => const AuthGate(),
       },
       theme: ThemeData(
         useMaterial3: true,

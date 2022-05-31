@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreateCountPage extends StatefulWidget {
   const CreateCountPage({ Key? key }) : super(key: key);
@@ -9,8 +10,31 @@ class CreateCountPage extends StatefulWidget {
 
 class _CreateCountPageState extends State<CreateCountPage> {
 
-  void funcaoTeste() {
-    print('clicou');
+  final formKey = GlobalKey<FormState>();
+  final email = TextEditingController();
+  final senha = TextEditingController();
+
+  bool statusCriacaoConta = false;
+  String msgError = "";
+
+  void criarConta() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email.text,
+        password: senha.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('A senha deve conter no minimo 6 digitos');
+      } else if (e.code == 'email-already-in-use') {
+        print('Ja exite um email com esta conta!');
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    email.clear();
+    senha.clear();
   }
 
   @override
@@ -20,100 +44,84 @@ class _CreateCountPageState extends State<CreateCountPage> {
         title: const Text("Criar conta"),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: Container(
-        color: Theme.of(context).colorScheme.secondary,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  )
+      body: SingleChildScrollView(
+        child: Container(
+          color: Theme.of(context).colorScheme.secondary,
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Crie Sua\nConta!",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.w200,
+                        fontSize: 48,
+                        decoration: TextDecoration.none
+                      ),
+                    ),
+                  ),
                 ),
-                labelText: 'Nome',
-                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: TextFormField(
+                    controller: email,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                    ),
+                  ),
                 ),
-              ),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 30),
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  )
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: TextFormField(
+                    controller: senha,
+                    obscureText: true,
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Senha',
+                    ),
+                  ),
                 ),
-                labelText: 'Email',
-                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.only(left: 129, right: 129, top: 15, bottom: 15)
+                    ),
+                    onPressed: () {
+                      criarConta();
+                    },
+                    child: const Text(
+                      "Criar conta",
+                    ),
+                  ),
                 ),
-              ),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 30),
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10.0),
-                  )
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      "Ja tenho conta. Fazer login.",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
                 ),
-                labelText: 'Senha',
-                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
-                ),
-              ),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 18,
-              ),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: funcaoTeste, 
-              style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).colorScheme.primary,
-                padding: const EdgeInsets.only(left: 135, right: 135, top: 15, bottom: 15)
-              ),
-              child: const Text(
-                "Criar Conta",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              )
-            ),
-            const SizedBox(height: 30),
-            GestureDetector(
-              child: const Text(
-                "Ja tenho uma conta? Fazer login.",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              ],
+            )
+          )
         ),
       ),
     );
