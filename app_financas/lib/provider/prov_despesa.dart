@@ -44,4 +44,11 @@ class ProviderDespesa with ChangeNotifier {
     notifyListeners();
   }
 
+  removeDespesa(Despesa despesa) {
+    if(despesa != null && despesa.idDespesa != null) {
+      _itemsDespesa.remove(despesa.idDespesa);
+      notifyListeners();
+    }
+  }
+
 }

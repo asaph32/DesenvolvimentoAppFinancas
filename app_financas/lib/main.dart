@@ -1,3 +1,5 @@
+import 'package:app_financas/pages/homePage/componentsHomePage/form_despesa.dart';
+import 'package:app_financas/pages/homePage/componentsHomePage/form_receita.dart';
 import 'package:flutter/material.dart';
 import 'package:app_financas/pages/loginPage/login.dart';
 import 'package:app_financas/pages/createCountePage/create_count.dart';
@@ -43,6 +45,8 @@ class _AppState extends State<App> {
           '/criarConta' : (context) => const CreateCountPage(),
           '/bottom_navigator' : (context) => const BottomNavigator(),
           '/AuthGate' : (context) => const AuthGate(),
+          '/formReceita' : (context) => const FormReceita(),
+          '/formDespesa' : (context) => const FormDespesa(),
         },
         theme: ThemeData(
           useMaterial3: true,

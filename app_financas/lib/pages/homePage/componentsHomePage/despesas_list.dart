@@ -1,5 +1,7 @@
 import 'package:app_financas/models/despesas.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../provider/prov_despesa.dart';
 
 class ListDespesa extends StatefulWidget {
 
@@ -13,6 +15,9 @@ class ListDespesa extends StatefulWidget {
 class _ListDespesasState extends State<ListDespesa> {
   @override
   Widget build(BuildContext context) {
+
+    final ProviderDespesa despesas = Provider.of(context, listen: true);
+
     return ListTile(
       title: Text(widget.despesa.tituloDespesa),
       subtitle: Text(widget.despesa.tipoDespesa),
@@ -31,7 +36,7 @@ class _ListDespesasState extends State<ListDespesa> {
               icon: const Icon(Icons.delete),
               color: Colors.red,
               onPressed: () {
-                widget.despesa;
+                despesas.removeDespesa(widget.despesa);
               },
             )
           ]

@@ -16,8 +16,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  
-
   String esolhaMostrarReceitaDespesa = "r";
 
   @override
@@ -57,12 +55,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         onPressed: () {
-                          receitas.putReceita(Receita(
-                            tituloReceita: 'Receita teste incercao',
-                            tipoReceita: 'Restaurante',
-                            valorReceita: 200,
-                            dataReceita: '16/06/2022'
-                          ));
+                          Navigator.pushNamed(context, '/formReceita');
                         }, //aqui abrira modal de Receita
                         style: ElevatedButton.styleFrom(
                           primary: Theme.of(context).colorScheme.primary,
@@ -76,12 +69,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         onPressed: () {
-                          despesas.putDespesa(Despesa(
-                            tituloDespesa: 'Despesa insercao teste',
-                            tipoDespesa: 'restaurante',
-                            valorDespesa: 150,
-                            dataDespesa: '16/06/2022',
-                          ));
+                          Navigator.pushNamed(context, '/formDespesa');
                         }, //aqui abrira modal de despesa
                         style: ElevatedButton.styleFrom(
                           primary: Theme.of(context).colorScheme.tertiary,

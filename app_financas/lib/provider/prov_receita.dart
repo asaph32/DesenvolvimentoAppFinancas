@@ -44,4 +44,11 @@ class ProviderReceita with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeReceita(Receita receita) {
+    if(receita != null && receita.idReceita != null) {
+      _itemsReceita.remove(receita.idReceita);
+      notifyListeners();
+    }
+  }
+
 }

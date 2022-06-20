@@ -1,5 +1,7 @@
 import 'package:app_financas/models/receitas.dart';
+import 'package:app_financas/provider/prov_receita.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ListReceita extends StatefulWidget {
   
@@ -13,6 +15,9 @@ class ListReceita extends StatefulWidget {
 class _ListReceitaState extends State<ListReceita> {
   @override
   Widget build(BuildContext context) {
+
+    final ProviderReceita receitas = Provider.of(context, listen: true);
+
     return ListTile(
       title: Text(widget.receita.tituloReceita),
       subtitle: Text(widget.receita.tipoReceita),
@@ -30,7 +35,9 @@ class _ListReceitaState extends State<ListReceita> {
             IconButton(
               icon: const Icon(Icons.delete),
               color: Colors.red,
-              onPressed: () {},
+              onPressed: () {
+                receitas.removeReceita(widget.receita);
+              },
             )
           ]
         ),
