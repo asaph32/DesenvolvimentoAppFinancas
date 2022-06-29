@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -15,6 +16,9 @@ class _LoginPageState extends State<LoginPage> {
   final senha = TextEditingController();
 
   void fazerLogin() async {
+
+    final SnackBar snackBar;
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email.text,
@@ -22,9 +26,13 @@ class _LoginPageState extends State<LoginPage> {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that emai01@gmail.');
+        print('No user found.');
+        snackBar = const SnackBar(content: Text("Essa conta não existe!"), duration: Duration(seconds: 5),);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+        snackBar = const SnackBar(content: Text("Senha Incorreta!"), duration: Duration(seconds: 5),);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else {
         print("logou");
       }
@@ -46,20 +54,35 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Bem\nVindo!",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 48,
-                          decoration: TextDecoration.none
+                      SizedBox(
+                        width: 140.0,
+                        child: DefaultTextStyle(
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w200,
+                            fontSize: 40,
+                          ),
+                          child: AnimatedTextKit(
+                            animatedTexts: [
+                              FadeAnimatedText('Bem\nVindo'),
+                              TypewriterAnimatedText(
+                                'Organize\nsuas\nfinanças',
+                                speed: const Duration(milliseconds: 120),
+                                textStyle: const TextStyle(
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ],
+                            onTap: () {},
+                          ),
                         ),
                       ),
                       const SizedBox(width: 20),
                       const Image(
                         image: AssetImage('assets/imgs/graficos.png'),
-                        width: 170,
+                        width: 160,
                       )
                     ],
                   ),
@@ -91,11 +114,15 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.all(20),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.only(left: 147, right: 147, top: 15, bottom: 15)
+                      padding: const EdgeInsets.only(left: 147, right: 147, top: 15, bottom: 15),
+                      primary: Theme.of(context).colorScheme.primary,
                     ),
                     onPressed: fazerLogin,
-                    child: const Text(
-                      "Login"
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
                     ),
                   ),
                 ),

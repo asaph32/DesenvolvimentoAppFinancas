@@ -35,7 +35,7 @@ class _AppState extends State<App> {
         ),
         ChangeNotifierProvider(
           create: (context) => ProviderDespesa(),
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

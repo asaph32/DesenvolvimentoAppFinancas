@@ -16,7 +16,7 @@ var dataReceita = {
     dataReceita: "15 jun"
   ),
   '3': Receita(
-    idReceita: "2",
+    idReceita: "3",
     tituloReceita: "Bet",
     tipoReceita: "Presente",
     valorReceita: 22,
