@@ -21,13 +21,17 @@ class _PerfilState extends State<Perfil> {
         padding: const EdgeInsets.all(20),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.only(left: 129, right: 129, top: 15, bottom: 15)
+            padding: const EdgeInsets.only(left: 129, right: 129, top: 15, bottom: 15),
+            primary: Theme.of(context).colorScheme.primary,
           ),
           onPressed: () {
             sairDaConta();
           },
-          child: const Text(
+          child: Text(
             "Sair da conta",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
         ),
       ),
