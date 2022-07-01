@@ -23,11 +23,17 @@ class _CreateCountPageState extends State<CreateCountPage> {
         email: email.text,
         password: senha.text,
       );
+      final snackBar = const SnackBar(content: Text("Conta criada com sucesso!"), duration: Duration(seconds: 5),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('A senha deve conter no minimo 6 digitos');
+        final snackBar = const SnackBar(content: Text("A senha deve conter no minimo 6 digitos"), duration: Duration(seconds: 5),);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else if (e.code == 'email-already-in-use') {
         print('Ja exite um email com esta conta!');
+        final snackBar = const SnackBar(content: Text("Ja exite um email com esta conta!"), duration: Duration(seconds: 5),);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     } catch (e) {
       print(e);
