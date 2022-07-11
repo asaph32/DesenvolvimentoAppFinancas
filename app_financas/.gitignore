@@ -46,14 +46,13 @@ app.*.map.json
 /android/app/release
 
 #Pastas nao necessarias
-/windows
-/web
-/android
-/macos
-/linux
-/ios
-/test
+windows
+web
+android
+macos
+linux
+ios
+test
 
 #Firebase
-/lib/firebase_options.dart
-/lib/generated_plugin_registrant.dart
+lib/firebase_options.dart
